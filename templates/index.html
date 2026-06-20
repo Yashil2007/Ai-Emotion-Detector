@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Emotion Detector</title>
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>AI Emotion Detector</h1>
+
+        <form action="/analyze" method="POST">
+
+            <textarea
+                name="feedback"
+                rows="6"
+                cols="50"
+                placeholder="Enter customer feedback here..."
+                required>
+            </textarea>
+
+            <br><br>
+
+            <button type="submit">
+                Analyze Emotion
+            </button>
+
+        </form>
+
+        {% if result %}
+
+        <div class="result">
+
+            <h2>Results</h2>
+
+            <p>Joy: {{ result.joy }}</p>
+            <p>Anger: {{ result.anger }}</p>
+            <p>Fear: {{ result.fear }}</p>
+            <p>Sadness: {{ result.sadness }}</p>
+            <p>Disgust: {{ result.disgust }}</p>
+
+            <h3>
+                Dominant Emotion:
+                {{ result.dominant_emotion }}
+            </h3>
+
+        </div>
+
+        {% endif %}
+
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
